@@ -86,3 +86,10 @@ tasks.register<ConsumerTask>("consumer") {
 
     result = foo
 }
+
+tasks.register<Zip>("packageTestResults") {
+    archiveFileName = "test-results.zip"
+    destinationDirectory = layout.buildDirectory
+
+    from(layout.buildDirectory.dir("test-results"))
+}
