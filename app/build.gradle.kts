@@ -59,4 +59,6 @@ dependencies {
     debugImplementation(libs.androidx.compose.ui.test.manifest)
 }
 
-tasks.register<HelloWorldTask>("hello")
+tasks.register<HelloWorldTask>("hello") {
+    greeting = "Hello, Gradle!"
+}

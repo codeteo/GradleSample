@@ -18,4 +18,11 @@ local.properties
 .idea/
 .idea/*
 /.idea/*
-
+.idea/
+*.iml
+*.iws
+.idea/workspace.xml
+.idea/tasks.xml
+.idea/shelf/
+.idea/dictionaries
+.idea/libraries
