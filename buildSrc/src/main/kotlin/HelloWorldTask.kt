@@ -1,14 +1,18 @@
 import org.gradle.api.DefaultTask
+import org.gradle.api.provider.Property
 import org.gradle.api.tasks.Input
 import org.gradle.api.tasks.TaskAction
 
 abstract class HelloWorldTask : DefaultTask() {
 
     @get:Input
-    var greeting: String = "Hello from buildSrc!"
+    abstract val greeting: Property<String>
+
+//    @Input
+//    val greeting: String = "Hello, World!"
 
     @TaskAction
     fun greet() {
-        println(greeting)
+        println(greeting.get())
     }
 }
