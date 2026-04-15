@@ -67,3 +67,20 @@ tasks.register<FileClassesTask>("fileClasses") {
     input = "src/main/java/com/example/gradletest/MainActivity.kt"
     outputFile = layout.buildDirectory.file("files.txt")
 }
+
+
+tasks.register<ProducerTask>("producer") {
+    outputFile = layout.buildDirectory.file("result.txt").get()
+}
+
+tasks.register<ConsumerTask>("consumer") {
+    dependsOn("producer")
+
+    // will fail since the result is not available at configuration time, but we can read it at execution time
+    // so we need to defer the reading of the result to execution time
+    val resultFile = tasks.named<ProducerTask>("producer").get().outputFile
+
+    val foo = resultFile.asFile.readText()
+
+    result = foo
+}
