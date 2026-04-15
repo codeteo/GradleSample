@@ -70,6 +70,8 @@ tasks.register<FileClassesTask>("fileClasses") {
 
 
 tasks.register<ProducerTask>("producer") {
+    // during the Configuration phase: Gradle attempts to read that file immediately.
+    // Because the task that creates that file hasn't run yet (it only runs in the Execution phase)
     outputFile = layout.buildDirectory.file("result.txt").get()
 }
 
@@ -78,9 +80,9 @@ tasks.register<ConsumerTask>("consumer") {
 
     // will fail since the result is not available at configuration time, but we can read it at execution time
     // so we need to defer the reading of the result to execution time
-    val resultFile = tasks.named<ProducerTask>("producer").get().outputFile
+    val resultFile: RegularFileProperty = tasks.named<ProducerTask>("producer").get().outputFile
 
-    val foo = resultFile.asFile.readText()
+    val foo = resultFile.map { it.asFile.readText() }
 
     result = foo
 }
