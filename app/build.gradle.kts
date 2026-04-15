@@ -62,3 +62,8 @@ dependencies {
 tasks.register<HelloWorldTask>("hello") {
     greeting = "Hello, Gradle!"
 }
+
+tasks.register<FileClassesTask>("fileClasses") {
+    input = "src/main/java/com/example/gradletest/MainActivity.kt"
+    outputFile = layout.buildDirectory.file("files.txt")
+}
