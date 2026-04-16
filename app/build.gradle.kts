@@ -88,8 +88,14 @@ tasks.register<ConsumerTask>("consumer") {
 }
 
 tasks.register<Zip>("packageTestResults") {
+//    dependsOn("test")
     archiveFileName = "test-results.zip"
     destinationDirectory = layout.buildDirectory
 
     from(layout.buildDirectory.dir("test-results"))
+//    from(tasks.named<Test>("test"))
 }
+//
+//tasks.named("test") {
+//    finalizedBy("packageTestResults")
+//}
