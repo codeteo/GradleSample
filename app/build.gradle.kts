@@ -112,3 +112,11 @@ tasks.register<HelloWorldTask>("hello2") {
         println("This runs AFTER the main task action")
     }
 }
+
+tasks.register("registeredTask") {
+    println("registeredTask configuration evaluated")
+}
+
+tasks.create("createdTask") {
+    println("createdTask configuration evaluated")
+}
