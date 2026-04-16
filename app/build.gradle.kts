@@ -99,3 +99,16 @@ tasks.register<Zip>("packageTestResults") {
 //tasks.named("test") {
 //    finalizedBy("packageTestResults")
 //}
+
+tasks.register<HelloWorldTask>("hello2") {
+    greeting = "Hello, Gradle! This is hello task 2."
+
+    println("This runs during the Configuration phase, when the task is being configured")
+
+    doFirst {
+        println("This runs BEFORE the main task action")
+    }
+    doLast {
+        println("This runs AFTER the main task action")
+    }
+}
